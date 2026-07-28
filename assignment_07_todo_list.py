@@ -79,66 +79,49 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
-def add(a, b):
-    return a + b
+def add_task(tasks):
+    task = input("Enter task: ")
+    tasks.append(task)
+    print(f'Task added: "{task}"')
 
-def subtract(a, b):
-    return a - b
+def view_tasks(tasks):
+    if not tasks:
+        print("No tasks yet.")
+    else:
+        print("Your Tasks:")
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}. {task}")
 
-def multiply(a, b):
-    return a * b
+def delete_task(tasks):
+    view_tasks(tasks)
+    if not tasks:
+        return
+    num = int(input("Enter task number to delete: "))
+    if 1 <= num <= len(tasks):
+        removed = tasks.pop(num - 1)
+        print(f'Task "{removed}" has been removed.')
+    else:
+        print("Error: Invalid task number.")
 
-def divide(a, b):
-    if b == 0:
-        return None
-    return round(a / b, 2)
-
-def modulus(a, b):
-    if b == 0:
-        return None
-    return a % b
-
-def power(a, b):
-    return a ** b
-
+tasks = []
 while True:
     print("============================")
-    print("     SIMPLE CALCULATOR")
+    print("     TO-DO LIST MENU")
     print("============================")
-    print("1. Addition")
-    print("2. Subtraction")
-    print("3. Multiplication")
-    print("4. Division")
-    print("5. Modulus")
-    print("6. Exponentiation")
-    print("7. Quit")
-    choice = input("Select an operation (1-7): ")
+    print("1. Add task")
+    print("2. View tasks")
+    print("3. Delete task")
+    print("4. Quit")
+    choice = input("Enter your choice (1-4): ")
 
-    if choice == "7":
+    if choice == "1":
+        add_task(tasks)
+    elif choice == "2":
+        view_tasks(tasks)
+    elif choice == "3":
+        delete_task(tasks)
+    elif choice == "4":
         print("Goodbye!")
         break
-    elif choice in ("1", "2", "3", "4", "5", "6"):
-        a = float(input("Enter first number : "))
-        b = float(input("Enter second number: "))
-        if choice == "1":
-            print("Result:", add(a, b))
-        elif choice == "2":
-            print("Result:", subtract(a, b))
-        elif choice == "3":
-            print("Result:", multiply(a, b))
-        elif choice == "4":
-            result = divide(a, b)
-            if result is None:
-                print("Error: Cannot divide by zero.")
-            else:
-                print("Result:", result)
-        elif choice == "5":
-            result = modulus(a, b)
-            if result is None:
-                print("Error: Cannot divide by zero.")
-            else:
-                print("Result:", result)
-        elif choice == "6":
-            print("Result:", power(a, b))
     else:
         print("Invalid choice. Please try again.")
