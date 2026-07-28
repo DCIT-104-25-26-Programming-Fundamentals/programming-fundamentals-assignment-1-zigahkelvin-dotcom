@@ -92,7 +92,7 @@ def power(a, b):
 
 while True:
     print("============================")
-    print("        CALCULATOR          ")
+    print("       SIMPLE CALCULATOR    ")
     print("============================")
     print("1. Addition")
     print("2. Subtraction")
