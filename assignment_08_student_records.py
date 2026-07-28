@@ -90,3 +90,64 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def add_student(students):
+    name = input("Student name: ")
+    sid = int(input("Student ID: "))
+    num_scores = int(input("How many scores? "))
+    scores = []
+    for i in range(num_scores):
+        score = int(input(f"Enter score {i + 1}: "))
+        scores.append(score)
+    students.append({"name": name, "id": sid, "scores": scores})
+    print(f'Student "{name}" added successfully.')
+
+def average_of(scores):
+    total = 0
+    for s in scores:
+        total = total + s
+    return round(total / len(scores), 2)
+
+def display_all(students):
+    if not students:
+        print("No students yet.")
+        return
+    print("-" * 50)
+    print(f"{'Name':<15}{'ID':<12}{'Scores':<15}{'Average'}")
+    print("-" * 50)
+    for student in students:
+        scores_str = ", ".join(str(s) for s in student["scores"])
+        avg = average_of(student["scores"])
+        print(f"{student['name']:<15}{student['id']:<12}{scores_str:<15}{avg}")
+    print("-" * 50)
+
+def find_average(students):
+    sid = int(input("Enter student ID: "))
+    for student in students:
+        if student["id"] == sid:
+            avg = average_of(student["scores"])
+            print(f"{student['name']}'s average score: {avg}")
+            return
+    print("Error: Student ID not found.")
+
+students = []
+while True:
+    print("================================")
+    print("   STUDENT RECORD SYSTEM MENU")
+    print("================================")
+    print("1. Add student")
+    print("2. Display all students")
+    print("3. Calculate average score")
+    print("4. Quit")
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == "1":
+        add_student(students)
+    elif choice == "2":
+        display_all(students)
+    elif choice == "3":
+        find_average(students)
+    elif choice == "4":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
