@@ -92,7 +92,7 @@ def power(a, b):
 
 while True:
     print("============================")
-    print("     SIMPLE CALCULATOR")
+    print("        CALCULATOR          ")
     print("============================")
     print("1. Addition")
     print("2. Subtraction")
@@ -131,3 +131,4 @@ while True:
             print("Result:", power(a, b))
     else:
         print("Invalid choice. Please try again.")
+        
